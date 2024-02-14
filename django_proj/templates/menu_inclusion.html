@@ -1,0 +1,28 @@
+{% for menu in menu_local_tree %}
+    
+    {% if menu.relative_depth != 0 and menu.relative_depth != 999 %}
+        Parent::
+        <a href="{% url 'main:'|add:menu.path %}">
+            {{ menu.name }}
+        </a>
+        <br>
+    {% endif %}
+
+    {% if menu.relative_depth == 0 %}
+        <b>
+            Current::
+            <a href="{% url 'main:'|add:menu.path %}">
+                {{ menu.name }}
+            </a>
+        </b>
+        <br>
+    {% endif %}
+    
+    {% if menu.relative_depth == 999 %}
+        Child::
+        <a href="{% url 'main:'|add:menu.path %}">
+            {{ menu.name }}
+        </a>
+    {% endif %}
+
+{% endfor %}
